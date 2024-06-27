@@ -1,4 +1,4 @@
-import { saveToken } from "../utils/secureStore";
+import { getToken, saveToken } from "../utils/secureStore";
 import api from "./api";
 
 export const login = async (email: string, password: string) => {
@@ -16,3 +16,16 @@ export const login = async (email: string, password: string) => {
     throw error;
   }
 };
+
+export async function getHeader() {
+  const token = await getToken();
+  if (token) {
+    return {
+      headers: {
+        Authorization: token,
+      },
+    };
+  } else {
+    throw new Error("No token found");
+  }
+}
