@@ -1,9 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-import { useEffect, useState } from "react";
-import { getUsers } from "./src/services/userService";
-import { login } from "./src/services/authService";
+import AppContext from "./src/contexts/AppContext";
+import { useEffect } from "react";
 import Login from "./src/app/Login";
+import SelectCharacter from "./src/app/SelectCharacter";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   // const [users, setUsers] = useState([]);
@@ -14,14 +16,21 @@ export default function App() {
 
   // const fetchUsers = async () => {
   //   try {
-  //     const response = await login("adnir1@alunos.utfpr.edu.br", "bacon123");
   //     const data = await getUsers();
   //     setUsers(data);
-  //     console.log(users);
   //   } catch (error) {
   //     console.error("Error fetching users:", error);
   //   }
   // };
 
-  return <Login></Login>;
+  return (
+    <AppContext.Provider value={""}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Select a Character" component={SelectCharacter} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AppContext.Provider>
+  );
 }

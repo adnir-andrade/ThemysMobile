@@ -6,30 +6,21 @@ import Logo from "../components/ui/Logo";
 import LoginForm from "../components/LoginForm";
 import { login } from "../services/authService";
 
-export default function Login({ navigation }: any) {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
       await login(email, password);
-      navigation.navigate("Select a Character");
-    } catch (error: any) {
-      console.log(error);
-    }
+      //   router.push("/select-character");
+    } catch (error: any) {}
   };
 
   return (
     <Background>
       <View className="flex-1 justify-center">
         <Logo />
-        <LoginForm
-          email={email}
-          password={password}
-          setEmail={setEmail}
-          setPassword={setPassword}
-        />
-        <LoginButton onPress={handleLogin} />
       </View>
     </Background>
   );
