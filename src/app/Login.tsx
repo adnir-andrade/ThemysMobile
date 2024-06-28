@@ -6,15 +6,17 @@ import Logo from "../components/ui/Logo";
 import LoginForm from "../components/LoginForm";
 import { login } from "../services/authService";
 
-export default function Login() {
+export default function Login({ navigation }: any) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
       await login(email, password);
-      //   router.push("/select-character");
-    } catch (error: any) {}
+      navigation.navigate("Select a Character");
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   return (
