@@ -1,26 +1,17 @@
 import { View } from "react-native";
-import React, { useState } from "react";
-import LoginButton from "../components/LoginButton";
+import React from "react";
 import Background from "../components/ui/Background";
 import Logo from "../components/ui/Logo";
-import LoginForm from "../components/LoginForm";
-import { login } from "../services/authService";
+import Header from "../components/Header";
+import CharacterList from "../components/CharacterList";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = async () => {
-    try {
-      await login(email, password);
-      //   router.push("/select-character");
-    } catch (error: any) {}
-  };
-
+export default function SelectCharacter() {
   return (
     <Background>
       <View className="flex-1 justify-center">
-        <Logo />
+        {/* <Logo /> */}
+        <Header title="Select a Character" />
+        <CharacterList />
       </View>
     </Background>
   );
