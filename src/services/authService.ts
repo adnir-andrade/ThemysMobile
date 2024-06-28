@@ -10,6 +10,7 @@ export const login = async (email: string, password: string) => {
   try {
     const response = await api.post("/login", data);
     saveToken(response.data.token);
+    console.log("Token generated successfully!");
     return response.data;
   } catch (error) {
     console.error("Error during login:", error);
