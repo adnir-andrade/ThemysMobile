@@ -1,13 +1,27 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { getUsers } from "./src/services/userService";
+import { login } from "./src/services/authService";
+import Login from "./src/app/Login";
 
 export default function App() {
-  return (
-    <View className="flex-1 items-center justify-center bg-orange-200">
-      <Text className="text-4xl">
-        Open up App.js to start working on your app!
-      </Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  // const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // fetchUsers();
+  }, []);
+
+  // const fetchUsers = async () => {
+  //   try {
+  //     const response = await login("adnir1@alunos.utfpr.edu.br", "bacon123");
+  //     const data = await getUsers();
+  //     setUsers(data);
+  //     console.log(users);
+  //   } catch (error) {
+  //     console.error("Error fetching users:", error);
+  //   }
+  // };
+
+  return <Login></Login>;
 }
