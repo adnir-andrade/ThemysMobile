@@ -6,43 +6,13 @@ import Header from "../../components/Header";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
 import ChevronButton from "../../components/ChevronButton";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step4 from "./Step4";
+import Step5 from "./Step5";
 
 type Props = NativeStackScreenProps<RootStackParamList, "CreateCharacter">;
-
-const Step1 = () => (
-  <View>
-    <Text>Step 1</Text>
-    <Text>Character Level -- Gender -- Race</Text>
-  </View>
-);
-
-const Step2 = () => (
-  <View>
-    <Text>Step 2</Text>
-    <Text>Class -- Class Level</Text>
-  </View>
-);
-
-const Step3 = () => (
-  <View>
-    <Text>Step 3</Text>
-    <Text>Stats</Text>
-  </View>
-);
-
-const Step4 = () => (
-  <View>
-    <Text>Step 4</Text>
-    <Text>Skills</Text>
-  </View>
-);
-
-const Step5 = () => (
-  <View>
-    <Text>Step 5</Text>
-    <Text>Review and Submit</Text>
-  </View>
-);
 
 export default function CreateCharacter({ navigation }: Props) {
   const [step, setStep] = useState(1);
@@ -79,7 +49,7 @@ export default function CreateCharacter({ navigation }: Props) {
         <Header title="Create a Character" color="text-orange-300" />
         <View className="flex-1 h-full bg-zinc-700/50 mt-40 mb-48 mx-8 rounded-b-3xl rounded-t-xl">
           <View className="justify-center">{renderStep()}</View>
-          <View className="justify-between p-4">
+          <View className="flex flex-row justify-between items-center">
             {step > 1 && (
               <ChevronButton direction="left" onPress={handlePrev} />
             )}
