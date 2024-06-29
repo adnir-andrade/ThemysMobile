@@ -18,11 +18,11 @@ export default function Checkbox({ label, isChecked, setIsChecked }: Props) {
       onPress={toggleCheckbox}
     >
       <View
-        className={`w-6 h-6 border-2 border-black rounded-full ${
+        className={`w-5 h-5 border-2 border-black rounded-full ${
           isChecked ? "bg-black" : "bg-white/30"
         }`}
       >
-        {isChecked && <Text className="text-white text-sm">✔</Text>}
+        {isChecked && <Text className="text-white text-xs">✔</Text>}
       </View>
       <Text className="ml-2 text-lg">{label}</Text>
     </TouchableOpacity>
