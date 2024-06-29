@@ -1,6 +1,5 @@
 import { View } from "react-native";
 import React, { useContext, useState } from "react";
-import LoginButton from "../../components/LoginButton";
 import Background from "../../components/ui/Background";
 import Logo from "../../components/ui/Logo";
 import LoginForm from "./LoginForm";
@@ -8,6 +7,7 @@ import { login } from "../../services/authService";
 import AppContext from "../../contexts/AppContext";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
+import ImageButton from "../../components/ImageButton";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
@@ -36,7 +36,11 @@ export default function Login({ navigation }: Props) {
           setEmail={setEmail}
           setPassword={setPassword}
         />
-        <LoginButton onPress={handleLogin} />
+        <ImageButton
+          imageName="login"
+          className="self-center"
+          onPress={handleLogin}
+        />
       </View>
     </Background>
   );
