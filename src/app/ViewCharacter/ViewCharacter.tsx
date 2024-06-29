@@ -3,19 +3,21 @@ import React from "react";
 import Background from "../../components/ui/Background";
 import Logo from "../../components/ui/Logo";
 import Header from "../../components/Header";
-import CharacterList from "./CharacterList";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
 
-type Props = NativeStackScreenProps<RootStackParamList, "SelectCharacter">;
+type Props = NativeStackScreenProps<RootStackParamList, "ViewCharacter">;
 
-export default function SelectCharacter({ navigation, route }: Props) {
+export default function ViewCharacter({ navigation, route }: Props) {
+  const { characterId } = route.params;
+
+  console.log(characterId);
+
   return (
     <Background>
       <View className="flex-1 justify-center">
         {/* <Logo /> */}
-        <Header title="Select a Character" />
-        <CharacterList navigation={navigation} route={route} />
+        <Header title="View Character" />
       </View>
     </Background>
   );

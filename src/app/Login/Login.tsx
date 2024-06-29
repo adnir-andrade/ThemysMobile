@@ -6,8 +6,12 @@ import Logo from "../../components/ui/Logo";
 import LoginForm from "./LoginForm";
 import { login } from "../../services/authService";
 import AppContext from "../../contexts/AppContext";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/Navigation";
 
-export default function Login({ navigation }: any) {
+type Props = NativeStackScreenProps<RootStackParamList, "Login">;
+
+export default function Login({ navigation }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const app = useContext(AppContext);
@@ -16,7 +20,7 @@ export default function Login({ navigation }: any) {
     try {
       const response = await login(email, password);
       app?.setUser(response.user);
-      navigation.navigate("Select a Character");
+      navigation.navigate("SelectCharacter");
     } catch (error: any) {
       console.log(error);
     }

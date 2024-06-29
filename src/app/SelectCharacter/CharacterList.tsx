@@ -8,8 +8,12 @@ import EditButton from "../../components/EditButton";
 import DeleteButton from "../../components/DeleteButton";
 import TouchableTitle from "../../components/TouchableTitle";
 import CardFramed from "../../components/containers/CardFramed";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/Navigation";
 
-export default function CharacterList() {
+type Props = NativeStackScreenProps<RootStackParamList, "SelectCharacter">;
+
+export default function CharacterList({ navigation }: Props) {
   const [characters, setCharacters] = useState();
   const app = useContext(AppContext);
 
@@ -28,6 +32,7 @@ export default function CharacterList() {
 
   const handleView = (id: number) => {
     console.log(`Opening character ${id}`);
+    navigation.navigate("ViewCharacter", { characterId: id });
   };
 
   const handleEdit = (id: number) => {
