@@ -47,11 +47,13 @@ export default function CreateCharacter({ navigation }: Props) {
       <View className="flex-1">
         <Logo />
         <Header title="Create a Character" color="text-orange-300" />
-        <View className="flex-1 h-full bg-zinc-700/50 mt-40 mb-48 mx-8 rounded-b-3xl rounded-t-xl">
+        <View className="flex-1 h-full bg-zinc-700/50 mt-40 mb-48 p-4 mx-8 rounded-b-3xl rounded-t-xl">
           <View className="justify-center">{renderStep()}</View>
-          <View className="flex flex-row justify-between items-center">
-            {step > 1 && (
+          <View className="flex flex-row justify-between items-center absolute bottom-0 left-0 right-0">
+            {step > 1 ? (
               <ChevronButton direction="left" onPress={handlePrev} />
+            ) : (
+              <Text />
             )}
             {step < 5 && (
               <ChevronButton direction="right" onPress={handleNext} />
