@@ -9,9 +9,9 @@ import { RootStackParamList } from "../../types/Navigation";
 type Props = NativeStackScreenProps<RootStackParamList, "ViewCharacter">;
 
 export default function ViewCharacter({ navigation, route }: Props) {
-  const { characterId } = route.params;
+  const { character } = route.params;
 
-  console.log(characterId);
+  console.log(character);
 
   return (
     <Background>

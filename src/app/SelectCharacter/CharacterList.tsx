@@ -30,9 +30,8 @@ export default function CharacterList({ navigation }: Props) {
     fetchCharacters();
   }, []);
 
-  const handleView = (id: number) => {
-    console.log(`Opening character ${id}`);
-    navigation.navigate("ViewCharacter", { characterId: id });
+  const handleView = (character: Character) => {
+    navigation.navigate("ViewCharacter", { character: character });
   };
 
   const handleEdit = (id: number) => {
@@ -52,7 +51,7 @@ export default function CharacterList({ navigation }: Props) {
       <TouchableTitle
         title={`${item.name} - ${item.level}`}
         className="px-1"
-        onPress={() => handleView(item.id!)}
+        onPress={() => handleView(item)}
       />
       <CardFramed>
         <View className="flex justify-between mb-4">
