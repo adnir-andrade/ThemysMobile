@@ -72,7 +72,7 @@ export default function CharacterList({ navigation }: Props) {
   return (
     <View>
       <FlatList className="mx-8" data={characters} renderItem={renderItem} />
-      <AddButton onPress={handleAdd} />
+      <AddButton className="self-center" onPress={handleAdd} />
     </View>
   );
 }

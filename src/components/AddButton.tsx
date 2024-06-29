@@ -1,8 +1,4 @@
-import {
-  TouchableOpacity,
-  ImageBackground,
-  TouchableOpacityProps,
-} from "react-native";
+import { TouchableOpacity, Image, TouchableOpacityProps } from "react-native";
 import React from "react";
 
 type Props = {} & TouchableOpacityProps;
@@ -10,11 +6,11 @@ type Props = {} & TouchableOpacityProps;
 export default function AddButton({ ...rest }: Props) {
   return (
     <TouchableOpacity {...rest}>
-      <ImageBackground
+      <Image
         source={require("../../assets/images/add.png")}
         className="h-16"
         resizeMode="contain"
-      ></ImageBackground>
+      ></Image>
     </TouchableOpacity>
   );
 }
