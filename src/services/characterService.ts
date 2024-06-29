@@ -66,10 +66,10 @@ export const deleteCharacter = async (id: number) => {
   }
 };
 
-export const getCharactersByPlayer = async () => {
+export const getCharactersByPlayer = async (id: number) => {
   try {
     const authHeader = await getHeader();
-    const response = await api.get("/characters/player/2", authHeader);
+    const response = await api.get(`/characters/player/${id}`, authHeader);
 
     return response.data;
   } catch (error) {
