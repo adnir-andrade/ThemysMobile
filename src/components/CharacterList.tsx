@@ -10,6 +10,11 @@ import { Character } from "../types/Character";
 import { getCharactersByPlayer } from "../services/characterService";
 import AppContext from "../contexts/AppContext";
 import { Ionicons } from "@expo/vector-icons";
+import AddButton from "./AddButton";
+import EditButton from "./EditButton";
+import DeleteButton from "./DeleteButton";
+import TouchableTitle from "./TouchableTitle";
+import CardFramed from "./containers/CardFramed";
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState();
@@ -46,12 +51,12 @@ export default function CharacterList() {
 
   const renderItem = ({ item }: { item: Character }) => (
     <>
-      <TouchableOpacity className="px-1" onPress={() => handleView(item.id!)}>
-        <Text className="italic text-3xl pl-5 font-bold text-amber-200 underline decoration-amber-900/50 capitalize">
-          {`${item.name} - ${item.level}`}
-        </Text>
-      </TouchableOpacity>
-      <View className="mt-2 mb-8 border-solid border-2 border-gray-300 rounded-2xl p-4">
+      <TouchableTitle
+        title={`${item.name} - ${item.level}`}
+        className="px-1"
+        onPress={() => handleView(item.id!)}
+      />
+      <CardFramed>
         <View className="flex justify-between mb-4">
           <View>
             <Text className="text-lg">Campaign:</Text>
@@ -60,30 +65,17 @@ export default function CharacterList() {
           </View>
         </View>
         <View className="flex flex-row justify-between items-center">
-          <TouchableOpacity
-            className="px-1"
-            onPress={() => handleEdit(item.id!)}
-          >
-            <Ionicons name="pencil" size={24} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleDelete(item.id!)}>
-            <Ionicons name="trash-sharp" size={24} color="red" />
-          </TouchableOpacity>
+          <EditButton className="px-1" onPress={() => handleEdit(item.id!)} />
+          <DeleteButton onPress={() => handleDelete(item.id!)} />
         </View>
-      </View>
+      </CardFramed>
     </>
   );
 
   return (
     <View>
       <FlatList className="mx-8" data={characters} renderItem={renderItem} />
-      <TouchableOpacity onPress={() => handleAdd()}>
-        <ImageBackground
-          source={require("../../assets/images/add.png")}
-          className="h-16"
-          resizeMode="contain"
-        ></ImageBackground>
-      </TouchableOpacity>
+      <AddButton onPress={handleAdd} />
     </View>
   );
 }
