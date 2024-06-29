@@ -1,20 +1,13 @@
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
+import { View, Text, FlatList } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { Character } from "../types/Character";
-import { getCharactersByPlayer } from "../services/characterService";
-import AppContext from "../contexts/AppContext";
-import { Ionicons } from "@expo/vector-icons";
-import AddButton from "./AddButton";
-import EditButton from "./EditButton";
-import DeleteButton from "./DeleteButton";
-import TouchableTitle from "./TouchableTitle";
-import CardFramed from "./containers/CardFramed";
+import { Character } from "../../types/Character";
+import { getCharactersByPlayer } from "../../services/characterService";
+import AppContext from "../../contexts/AppContext";
+import AddButton from "../../components/AddButton";
+import EditButton from "../../components/EditButton";
+import DeleteButton from "../../components/DeleteButton";
+import TouchableTitle from "../../components/TouchableTitle";
+import CardFramed from "../../components/containers/CardFramed";
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState();
@@ -34,7 +27,7 @@ export default function CharacterList() {
   }, []);
 
   const handleView = (id: number) => {
-    console.log("Click click! Time to... See!");
+    console.log(`Opening character ${id}`);
   };
 
   const handleEdit = (id: number) => {

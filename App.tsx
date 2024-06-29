@@ -1,6 +1,6 @@
 import AppContext from "./src/contexts/AppContext";
-import Login from "./src/app/Login";
-import SelectCharacter from "./src/app/SelectCharacter";
+import Login from "./src/app/Login/Login";
+import SelectCharacter from "./src/app/SelectCharacter/SelectCharacter";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useState } from "react";

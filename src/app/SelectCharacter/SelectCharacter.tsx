@@ -1,9 +1,9 @@
 import { View } from "react-native";
 import React from "react";
-import Background from "../components/ui/Background";
-import Logo from "../components/ui/Logo";
-import Header from "../components/Header";
-import CharacterList from "../components/CharacterList";
+import Background from "../../components/ui/Background";
+import Logo from "../../components/ui/Logo";
+import Header from "../../components/Header";
+import CharacterList from "./CharacterList";
 
 export default function SelectCharacter() {
   return (

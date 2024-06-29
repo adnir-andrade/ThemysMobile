@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import React, { useContext, useState } from "react";
-import LoginButton from "../components/LoginButton";
-import Background from "../components/ui/Background";
-import Logo from "../components/ui/Logo";
-import LoginForm from "../components/LoginForm";
-import { login } from "../services/authService";
-import AppContext from "../contexts/AppContext";
+import LoginButton from "../../components/LoginButton";
+import Background from "../../components/ui/Background";
+import Logo from "../../components/ui/Logo";
+import LoginForm from "./LoginForm";
+import { login } from "../../services/authService";
+import AppContext from "../../contexts/AppContext";
 
 export default function Login({ navigation }: any) {
   const [email, setEmail] = useState("");
