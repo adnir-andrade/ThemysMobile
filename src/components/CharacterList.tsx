@@ -1,8 +1,15 @@
-import { View, Text, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Character } from "../types/Character";
 import { getCharactersByPlayer } from "../services/characterService";
 import AppContext from "../contexts/AppContext";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState();
@@ -21,17 +28,62 @@ export default function CharacterList() {
     fetchCharacters();
   }, []);
 
+  const handleView = (id: number) => {
+    console.log("Click click! Time to... See!");
+  };
+
+  const handleEdit = (id: number) => {
+    console.log("Click click! Time to edit!");
+  };
+
+  const handleDelete = (id: number) => {
+    console.log("Click click! Time to delete");
+  };
+
+  const handleAdd = () => {
+    console.log("Click click! Time to make another one");
+  };
+
   const renderItem = ({ item }: { item: Character }) => (
-    <View className="mb-20">
-      <Text>Name: {item.name}</Text>
-      <Text>ID: {item.race}</Text>
-      <Text>Type: {item.background}</Text>
-    </View>
+    <>
+      <TouchableOpacity className="px-1" onPress={() => handleView(item.id!)}>
+        <Text className="italic text-3xl pl-5 font-bold text-amber-200 underline decoration-amber-900/50 capitalize">
+          {`${item.name} - ${item.level}`}
+        </Text>
+      </TouchableOpacity>
+      <View className="mt-2 mb-8 border-solid border-2 border-gray-300 rounded-2xl p-4">
+        <View className="flex justify-between mb-4">
+          <View>
+            <Text className="text-lg">Campaign:</Text>
+            <Text className="text-lg">Race: {item.race}</Text>
+            <Text className="text-lg">Class: {item.klass}</Text>
+          </View>
+        </View>
+        <View className="flex flex-row justify-between items-center">
+          <TouchableOpacity
+            className="px-1"
+            onPress={() => handleEdit(item.id!)}
+          >
+            <Ionicons name="pencil" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleDelete(item.id!)}>
+            <Ionicons name="trash-sharp" size={24} color="red" />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </>
   );
 
   return (
     <View>
-      <FlatList data={characters} renderItem={renderItem} />
+      <FlatList className="mx-8" data={characters} renderItem={renderItem} />
+      <TouchableOpacity onPress={() => handleAdd()}>
+        <ImageBackground
+          source={require("../../assets/images/add.png")}
+          className="h-16"
+          resizeMode="contain"
+        ></ImageBackground>
+      </TouchableOpacity>
     </View>
   );
 }
