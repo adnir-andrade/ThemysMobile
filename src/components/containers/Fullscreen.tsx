@@ -6,5 +6,5 @@ type FullScreenProps = {
 };
 
 export default function FullScreen({ children }: FullScreenProps) {
-  return <View className="flex-1 justify-center items-center">{children}</View>;
+  return <View>{children}</View>;
 }

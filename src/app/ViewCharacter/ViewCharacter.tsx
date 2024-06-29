@@ -16,7 +16,7 @@ export default function ViewCharacter({ navigation, route }: Props) {
 
   return (
     <Background>
-      <View className="flex-1 justify-center">
+      <View>
         {/* <Logo /> */}
         <Header title={`${character.name}`} />
         <CharacterSheet character={character} />
