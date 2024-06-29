@@ -8,7 +8,7 @@ type Header = {
 export default function Header({ title }: Header) {
   return (
     <View className="pt-20 mb-20 absolute top-0 left-0 right-0">
-      <Text className="text-4xl text-center">{title}</Text>
+      <Text className="text-4xl text-center capitalize">{title}</Text>
     </View>
   );
 }
