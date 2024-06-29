@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ImageBackground,
-  StyleSheet,
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
