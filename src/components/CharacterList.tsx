@@ -1,16 +1,17 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Character } from "../types/Character";
 import { getCharactersByPlayer } from "../services/characterService";
+import AppContext from "../contexts/AppContext";
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState();
+  const app = useContext(AppContext);
 
   const fetchCharacters = async () => {
     try {
-      const data = await getCharactersByPlayer();
+      const data = await getCharactersByPlayer(app?.user.id!);
       setCharacters(data.characters);
-      console.log(data.characters);
     } catch (error) {
       console.error("Error fetching characters:", error);
     }
