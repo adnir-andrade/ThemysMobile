@@ -8,8 +8,12 @@ import EditButton from "../../components/EditButton";
 import DeleteButton from "../../components/DeleteButton";
 import TouchableTitle from "../../components/TouchableTitle";
 import CardFramed from "../../components/containers/CardFramed";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/Navigation";
 
-export default function CharacterList() {
+type Props = NativeStackScreenProps<RootStackParamList, "SelectCharacter">;
+
+export default function CharacterList({ navigation }: Props) {
   const [characters, setCharacters] = useState();
   const app = useContext(AppContext);
 
@@ -26,8 +30,8 @@ export default function CharacterList() {
     fetchCharacters();
   }, []);
 
-  const handleView = (id: number) => {
-    console.log(`Opening character ${id}`);
+  const handleView = (character: Character) => {
+    navigation.navigate("ViewCharacter", { character: character });
   };
 
   const handleEdit = (id: number) => {
@@ -47,7 +51,7 @@ export default function CharacterList() {
       <TouchableTitle
         title={`${item.name} - ${item.level}`}
         className="px-1"
-        onPress={() => handleView(item.id!)}
+        onPress={() => handleView(item)}
       />
       <CardFramed>
         <View className="flex justify-between mb-4">

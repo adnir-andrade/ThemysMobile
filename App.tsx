@@ -5,8 +5,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { User } from "./src/types/User";
+import ViewCharacter from "./src/app/ViewCharacter/ViewCharacter";
+import { RootStackParamList } from "./src/types/Navigation";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   const [user, setUser] = useState<User>({
@@ -21,7 +23,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Select a Character" component={SelectCharacter} />
+          <Stack.Screen name="SelectCharacter" component={SelectCharacter} />
+          <Stack.Screen name="ViewCharacter" component={ViewCharacter} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppContext.Provider>
