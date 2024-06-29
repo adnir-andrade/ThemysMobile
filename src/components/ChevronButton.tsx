@@ -1,8 +1,4 @@
-import {
-  TouchableOpacity,
-  ImageBackground,
-  TouchableOpacityProps,
-} from "react-native";
+import { TouchableOpacity, Image, TouchableOpacityProps } from "react-native";
 import React from "react";
 
 type Props = {
@@ -16,11 +12,11 @@ export default function ChevronButton({ direction, ...rest }: Props) {
       : require("../../assets/images/chevrons-left.png");
   return (
     <TouchableOpacity {...rest}>
-      <ImageBackground
+      <Image
         source={chevronImage}
-        className="h-16"
+        style={{ width: 64, height: 64 }}
         resizeMode="contain"
-      ></ImageBackground>
+      />
     </TouchableOpacity>
   );
 }
