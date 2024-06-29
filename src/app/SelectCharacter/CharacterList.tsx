@@ -43,7 +43,7 @@ export default function CharacterList({ navigation }: Props) {
   };
 
   const handleAdd = () => {
-    console.log("Click click! Time to make another one");
+    navigation.navigate("CreateCharacter");
   };
 
   const renderItem = ({ item }: { item: Character }) => (

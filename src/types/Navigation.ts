@@ -4,4 +4,5 @@ export type RootStackParamList = {
   Login: undefined;
   SelectCharacter: undefined;
   ViewCharacter: { character: Character };
+  CreateCharacter: undefined;
 };

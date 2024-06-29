@@ -7,6 +7,7 @@ import { useState } from "react";
 import { User } from "./src/types/User";
 import ViewCharacter from "./src/app/ViewCharacter/ViewCharacter";
 import { RootStackParamList } from "./src/types/Navigation";
+import CreateCharacter from "./src/app/CreateCharacter/CreateCharacter";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,6 +26,7 @@ export default function App() {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SelectCharacter" component={SelectCharacter} />
           <Stack.Screen name="ViewCharacter" component={ViewCharacter} />
+          <Stack.Screen name="CreateCharacter" component={CreateCharacter} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppContext.Provider>
