@@ -1,30 +1,23 @@
 import AppContext from "./src/contexts/AppContext";
-import { useEffect } from "react";
-import Login from "./src/app/Login";
-import SelectCharacter from "./src/app/SelectCharacter";
+import Login from "./src/app/Login/Login";
+import SelectCharacter from "./src/app/SelectCharacter/SelectCharacter";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useState } from "react";
+import { User } from "./src/types/User";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    // fetchUsers();
-  }, []);
-
-  // const fetchUsers = async () => {
-  //   try {
-  //     const data = await getUsers();
-  //     setUsers(data);
-  //   } catch (error) {
-  //     console.error("Error fetching users:", error);
-  //   }
-  // };
+  const [user, setUser] = useState<User>({
+    name: "",
+    username: "",
+    email: "",
+    role: "",
+  });
 
   return (
-    <AppContext.Provider value={""}>
+    <AppContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />

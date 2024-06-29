@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import FormInput from "../components/FormInput";
+import FormInput from "../../components/FormInput";
 import React, { SetStateAction } from "react";
 
 type LoginFormProps = {
