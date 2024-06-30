@@ -30,9 +30,9 @@ export default function CreateCharacter({ navigation }: Props) {
       case 3:
         return <Step3 character={character} updateCharacter={setStepValues} />;
       case 4:
-        return <Step4 />;
+        return <Step4 character={character} updateCharacter={setStepValues} />;
       case 5:
-        return <Step5 />;
+        return <Step5 character={character} updateCharacter={setStepValues} />;
       default:
         return <Step1 character={character} updateCharacter={setStepValues} />;
     }

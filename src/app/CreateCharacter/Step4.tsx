@@ -1,7 +1,8 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { skills } from "../../constants/Skills";
 import RadioBoxButton from "../../components/RadioBoxButton";
+import { Character } from "../../types/Character";
 
 type SkillItem = {
   id: number;
@@ -9,15 +10,33 @@ type SkillItem = {
   isChecked: boolean;
 };
 
-export default function Step4() {
+type Props = {
+  character: Character;
+  updateCharacter: (updatedFields: Partial<Character>) => void;
+};
+
+export default function Step4({ character, updateCharacter }: Props) {
   const initialSkillsState: SkillItem[] = skills.map((skill, index) => ({
     id: index,
     name: skill,
-    isChecked: false,
+    isChecked: character.skills!.includes(skill),
   }));
 
   const [skillsState, setSkillsState] =
     useState<SkillItem[]>(initialSkillsState);
+  const [chosenSkills, setChosenSkills] = useState<string[]>([]);
+
+  useEffect(() => {
+    const skills = skillsState.filter((skill) => skill.isChecked);
+    const skillsName = skills.map((skill) => skill.name);
+    setChosenSkills(skillsName);
+  }, [skillsState]);
+
+  useEffect(() => {
+    updateCharacter({
+      skills: chosenSkills,
+    });
+  }, [chosenSkills]);
 
   const toggleEnabled = (id: number) => {
     setSkillsState((prevSkills) => {
@@ -37,7 +56,7 @@ export default function Step4() {
     <>
       <View className="flex flex-row justify-between items-center">
         <View className="flex-1">
-          <Text className="text-lg font-medium text-yellow-400">
+          <Text className="text-lg font-medium text-yellow-500">
             {item.name}
           </Text>
         </View>
@@ -55,8 +74,12 @@ export default function Step4() {
 
   return (
     <View>
+      <Text className="text-xl mb-2 font-medium text-yellow-300 pt-8 px-2">
+        Skills{" "}
+      </Text>
+
       <FlatList
-        className="mx-4"
+        className="mx-4 mb-32"
         data={skillsState}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
