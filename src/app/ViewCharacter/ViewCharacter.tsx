@@ -27,11 +27,6 @@ export default function ViewCharacter({ navigation, route }: Props) {
           className="mt-20"
         />
         <CharacterSheet character={character} />
-        <ImageButton
-          imageName="config"
-          className="mt-20 place-self-end self-center"
-          onPress={handleConfig}
-        />
       </View>
     </Background>
   );
