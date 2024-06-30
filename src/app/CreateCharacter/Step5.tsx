@@ -26,7 +26,7 @@ export default function Step5({ character, updateCharacter }: Props) {
         Summary
       </Text>
       <View className="mt-4 items-center">
-        <Header title={character.name} color="text-epic" className="mb-4" />
+        <Header title={character.name} color="text-epic" />
         <View className="justify-start items-center mb-3">
           <Text className="text-3xl text-white font-semibold">
             {character.gender} {character.race}

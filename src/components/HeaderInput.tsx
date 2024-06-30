@@ -9,7 +9,7 @@ type Props = {
 export default function HeaderInput({ title, color, ...rest }: Props) {
   const textStyle = "text-4xl font-semibold text-center capitalize " + color;
   return (
-    <View className="pt-20 mb-20 absolute top-0 left-0 right-0">
+    <View className="mb-20">
       <TextInput
         className={textStyle}
         placeholder="Insert name here"
