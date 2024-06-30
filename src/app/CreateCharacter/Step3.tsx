@@ -58,7 +58,7 @@ export default function Step3({ character, updateCharacter }: Props) {
   }, [str, dex, con, int, wis, cha]);
 
   const handleDice = () => {
-    console.log("Rolling dice...");
+    stats.forEach((stat) => setAcronym[stat](10));
   };
 
   const handleReset = () => {
