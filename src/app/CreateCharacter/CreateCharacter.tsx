@@ -11,7 +11,6 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 import { useCharacter } from "../../hooks/useCharacter";
-import { Character } from "../../types/Character";
 import HeaderInput from "../../components/HeaderInput";
 import ImageButton from "../../components/ImageButton";
 
@@ -19,24 +18,36 @@ type Props = {} & NativeStackScreenProps<RootStackParamList, "CreateCharacter">;
 
 export default function CreateCharacter({ navigation }: Props) {
   const [step, setStep] = useState(1);
-  const { character, updateCharacter } = useCharacter();
-  const [stepValues, setStepValues] = useState<Partial<Character>>({});
+  const { character, updateCharacter, isCharacterValid } = useCharacter();
   const [name, setName] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(false);
 
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <Step1 character={character} updateCharacter={setStepValues} />;
+        return (
+          <Step1 character={character} updateCharacter={updateCharacter} />
+        );
       case 2:
-        return <Step2 character={character} updateCharacter={setStepValues} />;
+        return (
+          <Step2 character={character} updateCharacter={updateCharacter} />
+        );
       case 3:
-        return <Step3 character={character} updateCharacter={setStepValues} />;
+        return (
+          <Step3 character={character} updateCharacter={updateCharacter} />
+        );
       case 4:
-        return <Step4 character={character} updateCharacter={setStepValues} />;
+        return (
+          <Step4 character={character} updateCharacter={updateCharacter} />
+        );
       case 5:
-        return <Step5 character={character} updateCharacter={setStepValues} />;
+        return (
+          <Step5 character={character} updateCharacter={updateCharacter} />
+        );
       default:
-        return <Step1 character={character} updateCharacter={setStepValues} />;
+        return (
+          <Step1 character={character} updateCharacter={updateCharacter} />
+        );
     }
   };
 
@@ -46,13 +57,20 @@ export default function CreateCharacter({ navigation }: Props) {
     });
   }, [name]);
 
+  useEffect(() => {
+    if (isCharacterValid()) {
+      setIsValid(true);
+      return;
+    }
+
+    setIsValid(false);
+  }, [character]);
+
   const handleNext = () => {
-    updateCharacter(stepValues);
     if (step < 5) setStep(step + 1);
   };
 
   const handlePrev = () => {
-    updateCharacter(stepValues);
     if (step > 1) setStep(step - 1);
   };
 
@@ -71,21 +89,17 @@ export default function CreateCharacter({ navigation }: Props) {
             {step > 1 ? (
               <ChevronButton direction="left" onPress={handlePrev} />
             ) : (
-              <ChevronButton
-                direction="left"
-                className="opacity-25"
-                onPress={handlePrev}
-              />
+              <ChevronButton direction="left" className="opacity-25" />
             )}
-            <ImageButton imageName="add" onPress={handleAdd} />
+            {isValid ? (
+              <ImageButton imageName="add" onPress={handleAdd} />
+            ) : (
+              <ImageButton imageName="add" className="opacity-25" />
+            )}
             {step < 5 ? (
               <ChevronButton direction="right" onPress={handleNext} />
             ) : (
-              <ChevronButton
-                direction="right"
-                className="opacity-25"
-                onPress={handleNext}
-              />
+              <ChevronButton direction="right" className="opacity-25" />
             )}
           </View>
         </View>
