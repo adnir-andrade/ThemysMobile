@@ -27,6 +27,7 @@ export default function Step3({ character, updateCharacter }: Props) {
   const [wis, setWis] = useState<number>(character.wisdom);
   const [cha, setCha] = useState<number>(character.charisma);
   const [selectedStat, setSelectedStat] = useState<string>(stats[0]);
+  const [pointsLeft, setPointsLeft] = useState<number>(27);
 
   const setAcronym: setAcronymType = {
     STR: setStr,
@@ -69,16 +70,16 @@ export default function Step3({ character, updateCharacter }: Props) {
   };
 
   const handleReset = () => {
-    stats.forEach((stat) => setAcronym[stat](10));
+    stats.forEach((stat) => setAcronym[stat](8));
   };
 
   const handleDecrease = () => {
-    if (varAcronym[selectedStat] > 1)
+    if (varAcronym[selectedStat] > 8)
       setAcronym[selectedStat](varAcronym[selectedStat] - 1);
   };
 
   const handleIncrease = () => {
-    if (varAcronym[selectedStat] < 20)
+    if (varAcronym[selectedStat] < 15)
       setAcronym[selectedStat](varAcronym[selectedStat] + 1);
   };
 
@@ -97,7 +98,7 @@ export default function Step3({ character, updateCharacter }: Props) {
           />
         </View>
         <View className="flex-1">
-          <Text className="text-center text-4xl">0</Text>
+          <Text className="text-center text-4xl">{pointsLeft}</Text>
         </View>
         <View className="flex-1">
           <ImageButton
