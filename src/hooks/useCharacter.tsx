@@ -55,5 +55,23 @@ export function useCharacter() {
     return Math.floor((value - 10) / 2);
   };
 
-  return { character, updateCharacter, resetCharacter, getModValue };
+  const isCharacterValid = (): boolean => {
+    if (!character.name || character.name.trim() === "") return false;
+    if (!character.level) return false;
+    if (!character.race) return false;
+    if (!character.klass) return false;
+    if (!character.klass_level) return false;
+    if (character.points_to_spend > 0) return false;
+    if (character.skills?.length != 3) return false;
+
+    return true;
+  };
+
+  return {
+    character,
+    updateCharacter,
+    resetCharacter,
+    getModValue,
+    isCharacterValid,
+  };
 }
