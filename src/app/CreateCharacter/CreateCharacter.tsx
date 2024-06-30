@@ -13,6 +13,7 @@ import Step5 from "./Step5";
 import { useCharacter } from "../../hooks/useCharacter";
 import { Character } from "../../types/Character";
 import HeaderInput from "../../components/HeaderInput";
+import ImageButton from "../../components/ImageButton";
 
 type Props = {} & NativeStackScreenProps<RootStackParamList, "CreateCharacter">;
 
@@ -55,6 +56,10 @@ export default function CreateCharacter({ navigation }: Props) {
     if (step > 1) setStep(step - 1);
   };
 
+  const handleAdd = () => {
+    console.log("Click!");
+  };
+
   return (
     <Background>
       <View className="flex-1">
@@ -66,10 +71,21 @@ export default function CreateCharacter({ navigation }: Props) {
             {step > 1 ? (
               <ChevronButton direction="left" onPress={handlePrev} />
             ) : (
-              <Text />
+              <ChevronButton
+                direction="left"
+                className="opacity-25"
+                onPress={handlePrev}
+              />
             )}
-            {step < 5 && (
+            <ImageButton imageName="add" onPress={handleAdd} />
+            {step < 5 ? (
               <ChevronButton direction="right" onPress={handleNext} />
+            ) : (
+              <ChevronButton
+                direction="right"
+                className="opacity-25"
+                onPress={handleNext}
+              />
             )}
           </View>
         </View>
