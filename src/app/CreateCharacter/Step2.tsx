@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { levels } from "../../constants/Levels";
+import { getLevels } from "../../constants/Levels";
 import { klasses } from "../../constants/Klasses";
 
 import AttributeDropdown from "./AttributeDropdown";
@@ -19,16 +19,11 @@ export default function Step2({ character, updateCharacter }: Props) {
   );
 
   useEffect(() => {
-    if (chosenKlass !== null) {
-      updateCharacter({ klass: chosenKlass });
-    }
-  }, [chosenKlass]);
-
-  useEffect(() => {
-    if (chosenKlassLevel !== null) {
-      updateCharacter({ klass_level: chosenKlassLevel });
-    }
-  }, [chosenKlassLevel]);
+    updateCharacter({
+      klass: chosenKlass!,
+      klass_level: chosenKlassLevel!,
+    });
+  }, [chosenKlass, chosenKlassLevel]);
 
   return (
     <>
@@ -42,7 +37,7 @@ export default function Step2({ character, updateCharacter }: Props) {
         zIndexInverse={1000}
       />
       <AttributeDropdown
-        itemsList={levels}
+        itemsList={getLevels(character.level)}
         value={chosenKlassLevel}
         setValue={setChosenKlassLevel}
         title="Class Level"

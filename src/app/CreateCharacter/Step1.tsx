@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { levels } from "../../constants/Levels";
 import { genders } from "../../constants/Genders";
 import { races } from "../../constants/Races";
 
 import AttributeDropdown from "./AttributeDropdown";
 import { Character } from "../../types/Character";
+import AppContext from "../../contexts/AppContext";
 
 type Props = {
   character: Character;
@@ -12,6 +13,8 @@ type Props = {
 };
 
 export default function Step1({ character, updateCharacter }: Props) {
+  const app = useContext(AppContext);
+
   const [chosenLevel, setChosenLevel] = useState<number | null>(
     character.level
   );
@@ -21,22 +24,16 @@ export default function Step1({ character, updateCharacter }: Props) {
   const [chosenRace, setChosenRace] = useState<string | null>(character.race);
 
   useEffect(() => {
-    if (chosenLevel !== null) {
-      updateCharacter({ level: chosenLevel });
-    }
-  }, [chosenLevel]);
+    updateCharacter({ player_id: app?.user.id });
+  }, []);
 
   useEffect(() => {
-    if (chosenGender !== null) {
-      updateCharacter({ gender: chosenGender });
-    }
-  }, [chosenGender]);
-
-  useEffect(() => {
-    if (chosenRace !== null) {
-      updateCharacter({ race: chosenRace });
-    }
-  }, [chosenRace]);
+    updateCharacter({
+      level: chosenLevel!,
+      gender: chosenGender!,
+      race: chosenRace!,
+    });
+  }, [chosenLevel, chosenGender, chosenRace]);
 
   return (
     <>
