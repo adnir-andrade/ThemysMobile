@@ -66,11 +66,13 @@ export default function Step3({ character, updateCharacter }: Props) {
   };
 
   const handleDecrease = () => {
-    setAcronym[selectedStat](varAcronym[selectedStat] - 1);
+    if (varAcronym[selectedStat] > 1)
+      setAcronym[selectedStat](varAcronym[selectedStat] - 1);
   };
 
   const handleIncrease = () => {
-    setAcronym[selectedStat](varAcronym[selectedStat] + 1);
+    if (varAcronym[selectedStat] < 20)
+      setAcronym[selectedStat](varAcronym[selectedStat] + 1);
   };
 
   const handleSelect = (index: number) => {

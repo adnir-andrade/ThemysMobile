@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCharacter } from "../../hooks/useCharacter";
 import { acronymToAttribute } from "../../constants/Stats";
 
@@ -14,7 +14,11 @@ type Props = {
 } & TouchableOpacityProps;
 
 export default function StatLine({ stat, total, ...rest }: Props) {
-  const { character } = useCharacter();
+  const [mod, setMod] = useState<number>(0);
+
+  useEffect(() => {
+    setMod(Math.floor((total - 10) / 2));
+  }, [total]);
 
   return (
     <View className="flex flex-row mb-6">
@@ -27,7 +31,7 @@ export default function StatLine({ stat, total, ...rest }: Props) {
         <Text className="text-center text-xl">{total}</Text>
       </View>
       <View className="flex-1">
-        <Text className="text-center text-xl">0</Text>
+        <Text className="text-center text-xl">{mod}</Text>
       </View>
     </View>
   );
