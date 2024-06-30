@@ -58,7 +58,14 @@ export default function Step3({ character, updateCharacter }: Props) {
   }, [str, dex, con, int, wis, cha]);
 
   const handleDice = () => {
-    // 8, 10, 12, 13, 14, and 15
+    const standardArray = [8, 10, 12, 13, 14, 15];
+    const getRandomIndex = (numbers: number[]): number => {
+      return Math.floor(Math.random() * numbers.length);
+    };
+    for (const stat of stats) {
+      const index = getRandomIndex(standardArray);
+      setAcronym[stat](standardArray.splice(index, 1)[0]);
+    }
   };
 
   const handleReset = () => {
