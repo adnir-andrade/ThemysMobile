@@ -74,13 +74,25 @@ export default function Step3({ character, updateCharacter }: Props) {
   };
 
   const handleDecrease = () => {
-    if (varAcronym[selectedStat] > 8)
-      setAcronym[selectedStat](varAcronym[selectedStat] - 1);
+    const statValue = varAcronym[selectedStat];
+    const statSetter = setAcronym[selectedStat];
+    const pointCost = statValue < 13 ? 1 : 2;
+
+    if (statValue > 8) {
+      statSetter(statValue - 1);
+      setPointsLeft(pointsLeft + pointCost);
+    }
   };
 
   const handleIncrease = () => {
-    if (varAcronym[selectedStat] < 15)
-      setAcronym[selectedStat](varAcronym[selectedStat] + 1);
+    const statValue = varAcronym[selectedStat];
+    const statSetter = setAcronym[selectedStat];
+    const pointCost = statValue < 13 ? 1 : 2;
+
+    if (statValue < 15) {
+      statSetter(statValue + 1);
+      setPointsLeft(pointsLeft - pointCost);
+    }
   };
 
   const handleSelect = (index: number) => {
