@@ -78,8 +78,7 @@ export default function CreateCharacter({ navigation }: Props) {
   const handleAdd = () => {
     const submitCharacter = async () => {
       try {
-        const response = await createCharacter(character);
-        console.log(response);
+        await createCharacter(character);
       } catch (error) {
         console.error("Error trying to create a new character:", error);
       } finally {
