@@ -71,6 +71,7 @@ export default function Step3({ character, updateCharacter }: Props) {
 
   const handleReset = () => {
     stats.forEach((stat) => setAcronym[stat](8));
+    setPointsLeft(27);
   };
 
   const handleDecrease = () => {
