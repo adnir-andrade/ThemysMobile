@@ -77,7 +77,7 @@ export default function Step3({ character, updateCharacter }: Props) {
   const handleDecrease = () => {
     const statValue = varAcronym[selectedStat];
     const statSetter = setAcronym[selectedStat];
-    const pointCost = statValue < 13 ? 1 : 2;
+    const pointCost = statValue < 14 ? 1 : 2;
 
     if (statValue > 8) {
       statSetter(statValue - 1);
@@ -90,7 +90,7 @@ export default function Step3({ character, updateCharacter }: Props) {
     const statSetter = setAcronym[selectedStat];
     const pointCost = statValue < 13 ? 1 : 2;
 
-    if (statValue < 15) {
+    if (statValue < 15 && pointsLeft - pointCost >= 0) {
       statSetter(statValue + 1);
       setPointsLeft(pointsLeft - pointCost);
     }
