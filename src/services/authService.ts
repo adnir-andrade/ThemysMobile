@@ -1,4 +1,4 @@
-import { getToken, saveToken } from "../utils/secureStore";
+import { deleteToken, getToken, saveToken } from "../utils/secureStore";
 import api from "./api";
 
 export const login = async (email: string, password: string) => {
@@ -14,6 +14,16 @@ export const login = async (email: string, password: string) => {
     return response.data;
   } catch (error) {
     console.error("Error during login:", error);
+    throw error;
+  }
+};
+
+export const logout = async () => {
+  try {
+    await deleteToken();
+    console.log("Logout successful!");
+  } catch (error) {
+    console.error("Error during logout:", error);
     throw error;
   }
 };
