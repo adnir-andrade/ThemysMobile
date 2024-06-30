@@ -15,4 +15,5 @@ export type Character = {
   wisdom: number;
   charisma: number;
   background?: string;
+  points_to_spend: number;
 };

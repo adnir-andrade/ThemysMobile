@@ -1,23 +1,6 @@
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-type Character = {
-  player_id: number;
-  name: string;
-  level: number;
-  gender: string;
-  race: string;
-  klass: string;
-  klass_level: number;
-  hp: number;
-  strength: number;
-  dexterity: number;
-  constitution: number;
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
-  background: string;
-};
+import { Character } from "../types/Character";
 
 const initialCharacter: Character = {
   player_id: 0,
@@ -35,6 +18,7 @@ const initialCharacter: Character = {
   wisdom: 8,
   charisma: 8,
   background: "",
+  points_to_spend: 27,
 };
 
 export function useCharacter() {
