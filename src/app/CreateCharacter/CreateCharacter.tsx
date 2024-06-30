@@ -96,7 +96,9 @@ export default function CreateCharacter({ navigation }: Props) {
     <Background>
       <View className="flex-1">
         <Logo />
-        <HeaderInput color="text-orange-300" onChangeText={setName} />
+        <View className="absolute top-0 left-0 right-0 mt-16">
+          <HeaderInput color="text-orange-300" onChangeText={setName} />
+        </View>
         <View className="flex-1 h-full bg-zinc-700/50 mt-40 mb-48 p-4 mx-8 rounded-b-3xl rounded-t-xl">
           <View className="justify-center">{renderStep()}</View>
           <View className="flex flex-row justify-between items-center absolute bottom-0 left-0 right-0">

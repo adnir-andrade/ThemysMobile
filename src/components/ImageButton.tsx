@@ -16,6 +16,8 @@ const imagePaths = {
   reset: require("../../assets/images/reset.png"),
   add: require("../../assets/images/add.png"),
   login: require("../../assets/images/login.png"),
+  accept: require("../../assets/images/accept.png"),
+  cancel: require("../../assets/images/cancel.png"),
 };
 
 export default function ImageButton({

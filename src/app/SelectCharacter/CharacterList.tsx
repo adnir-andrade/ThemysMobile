@@ -41,8 +41,8 @@ export default function CharacterList({ navigation }: Props) {
     navigation.navigate("ViewCharacter", { character: character });
   };
 
-  const handleEdit = (id: number) => {
-    console.log("Click click! Time to edit!");
+  const handleEdit = (character: Character) => {
+    navigation.navigate("EditCharacter", { character: character });
   };
 
   const handleDelete = (id: number) => {
@@ -71,7 +71,7 @@ export default function CharacterList({ navigation }: Props) {
           </View>
         </View>
         <View className="flex flex-row justify-between items-center">
-          <EditButton className="px-1" onPress={() => handleEdit(item.id!)} />
+          <EditButton className="px-1" onPress={() => handleEdit(item)} />
           <DeleteButton onPress={() => handleDelete(item.id!)} />
         </View>
       </CardFramed>

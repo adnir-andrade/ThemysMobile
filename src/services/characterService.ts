@@ -42,12 +42,15 @@ export const createCharacter = async (characterData: Character) => {
   }
 };
 
-export const editCharacter = async (characterData: Character, id: number) => {
+export const editCharacter = async (
+  characterData: Partial<Character>,
+  id: number
+) => {
   try {
     const authHeader = await getHeader();
     const response = await api.put(
       `/characters/${id}`,
-      characterData,
+      { character: characterData },
       authHeader
     );
 
