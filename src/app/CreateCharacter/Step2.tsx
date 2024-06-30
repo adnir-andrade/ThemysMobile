@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { levels } from "../../constants/Levels";
 import { klasses } from "../../constants/Klasses";
 
 import AttributeDropdown from "./AttributeDropdown";
+import { Character } from "../../types/Character";
 
-export default function Step2() {
-  const [chosenKlass, setChosenKlass] = useState(null);
-  const [chosenKlassLevel, setChosenKlassLevel] = useState(null);
+type Props = {
+  character: Character;
+  updateCharacter: (updatedFields: Partial<Character>) => void;
+};
+
+export default function Step2({ character, updateCharacter }: Props) {
+  const [chosenKlass, setChosenKlass] = useState<string | null>(
+    character.klass
+  );
+  const [chosenKlassLevel, setChosenKlassLevel] = useState<number | null>(
+    character.klass_level
+  );
+
+  useEffect(() => {
+    if (chosenKlass !== null) {
+      updateCharacter({ klass: chosenKlass });
+    }
+  }, [chosenKlass]);
+
+  useEffect(() => {
+    if (chosenKlassLevel !== null) {
+      updateCharacter({ klass_level: chosenKlassLevel });
+    }
+  }, [chosenKlassLevel]);
 
   return (
     <>

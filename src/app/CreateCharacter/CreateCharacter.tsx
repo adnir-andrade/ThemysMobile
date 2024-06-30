@@ -11,18 +11,24 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
+import { useCharacter } from "../../hooks/useCharacter";
 
 type Props = NativeStackScreenProps<RootStackParamList, "CreateCharacter">;
 
 export default function CreateCharacter({ navigation }: Props) {
   const [step, setStep] = useState(1);
+  const { character, updateCharacter } = useCharacter();
 
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <Step1 />;
+        return (
+          <Step1 character={character} updateCharacter={updateCharacter} />
+        );
       case 2:
-        return <Step2 />;
+        return (
+          <Step2 character={character} updateCharacter={updateCharacter} />
+        );
       case 3:
         return <Step3 />;
       case 4:
@@ -30,7 +36,9 @@ export default function CreateCharacter({ navigation }: Props) {
       case 5:
         return <Step5 />;
       default:
-        return <Step1 />;
+        return (
+          <Step1 character={character} updateCharacter={updateCharacter} />
+        );
     }
   };
 

@@ -6,12 +6,10 @@ import DropDownPicker, {
   ValueType,
 } from "react-native-dropdown-picker";
 
-type Props = {
-  itemsList: ItemType<ValueType>[];
-  value: ValueType | null;
-  setValue:
-    | React.Dispatch<React.SetStateAction<ValueType>>
-    | React.Dispatch<React.SetStateAction<null>>;
+type Props<T extends ValueType | ValueType[] | null> = {
+  itemsList: ItemType<T>[];
+  value: T | null;
+  setValue: React.Dispatch<React.SetStateAction<T | null>>;
   title: string;
   placeholder?: string;
   zIndex: number;
@@ -19,7 +17,7 @@ type Props = {
   dropDownDirection?: DropDownDirectionType | undefined;
 };
 
-export default function AttributeDropdown({
+export default function AttributeDropdown<T extends ValueType>({
   itemsList,
   value,
   setValue,
@@ -28,7 +26,7 @@ export default function AttributeDropdown({
   zIndex,
   zIndexInverse,
   dropDownDirection = "AUTO",
-}: Props) {
+}: Props<T>) {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState(itemsList);
 
