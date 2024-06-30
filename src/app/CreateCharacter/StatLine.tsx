@@ -5,8 +5,6 @@ import {
   TouchableOpacityProps,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useCharacter } from "../../hooks/useCharacter";
-import { acronymToAttribute } from "../../constants/Stats";
 
 type Props = {
   stat: string;
