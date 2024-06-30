@@ -60,7 +60,7 @@ export default function Step3({ character, updateCharacter }: Props) {
       wisdom: wis!,
       charisma: cha!,
       points_to_spend: pointsLeft,
-      hp: 10 + getModValue(con) + character.level * 5,
+      hp: 10 + getModValue(con) + (character.level - 1) * 5,
     });
   }, [str, dex, con, int, wis, cha, pointsLeft]);
 
