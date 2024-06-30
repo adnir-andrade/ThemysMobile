@@ -24,14 +24,17 @@ export default function StatLine({ stat, total, ...rest }: Props) {
     <View className="flex flex-row mb-6">
       <View className="flex-1">
         <TouchableOpacity {...rest}>
-          <Text className="text-center text-xl">{stat}</Text>
+          <Text className="text-center text-xl font-semibold">{stat}</Text>
         </TouchableOpacity>
       </View>
       <View className="flex-1">
-        <Text className="text-center text-xl">{total}</Text>
+        <Text className="text-center text-xl font-black">{total}</Text>
       </View>
       <View className="flex-1">
-        <Text className="text-center text-xl">{mod}</Text>
+        <Text className="text-center text-xl font-bold">
+          {mod > 0 ? `+` : ``}
+          {mod}
+        </Text>
       </View>
     </View>
   );
