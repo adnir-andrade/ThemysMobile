@@ -51,5 +51,9 @@ export function useCharacter() {
     await AsyncStorage.setItem("character", JSON.stringify(initialCharacter));
   };
 
-  return { character, updateCharacter, resetCharacter };
+  const getModValue = (value: number) => {
+    return Math.floor((value - 10) / 2);
+  };
+
+  return { character, updateCharacter, resetCharacter, getModValue };
 }

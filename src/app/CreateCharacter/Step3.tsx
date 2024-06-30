@@ -4,6 +4,7 @@ import { getStatsAcronym } from "../../constants/Stats";
 import StatLine from "./StatLine";
 import ImageButton from "../../components/ImageButton";
 import { Character } from "../../types/Character";
+import { useCharacter } from "../../hooks/useCharacter";
 
 type Props = {
   character: Character;
@@ -19,6 +20,7 @@ type varAcronymType = {
 };
 
 export default function Step3({ character, updateCharacter }: Props) {
+  const { getModValue } = useCharacter();
   const stats = getStatsAcronym();
   const [str, setStr] = useState<number>(character.strength);
   const [dex, setDex] = useState<number>(character.dexterity);
@@ -58,6 +60,7 @@ export default function Step3({ character, updateCharacter }: Props) {
       wisdom: wis!,
       charisma: cha!,
       points_to_spend: pointsLeft,
+      hp: 10 + getModValue(con) + character.level * 5,
     });
   }, [str, dex, con, int, wis, cha, pointsLeft]);
 
