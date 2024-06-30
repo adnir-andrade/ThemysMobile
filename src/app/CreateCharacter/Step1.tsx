@@ -24,14 +24,11 @@ export default function Step1({ character, updateCharacter }: Props) {
   const [chosenRace, setChosenRace] = useState<string | null>(character.race);
 
   useEffect(() => {
-    updateCharacter({ player_id: app?.user.id });
-  }, []);
-
-  useEffect(() => {
     updateCharacter({
       level: chosenLevel!,
       gender: chosenGender!,
       race: chosenRace!,
+      player_id: app?.user.id,
     });
   }, [chosenLevel, chosenGender, chosenRace]);
 
