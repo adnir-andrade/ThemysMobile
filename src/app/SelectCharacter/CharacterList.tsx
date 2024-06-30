@@ -3,19 +3,21 @@ import React, { useContext, useEffect, useState } from "react";
 import { Character } from "../../types/Character";
 import { getCharactersByPlayer } from "../../services/characterService";
 import AppContext from "../../contexts/AppContext";
-import AddButton from "../../components/AddButton";
 import EditButton from "../../components/EditButton";
 import DeleteButton from "../../components/DeleteButton";
 import TouchableTitle from "../../components/TouchableTitle";
 import CardFramed from "../../components/containers/CardFramed";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
+import ImageButton from "../../components/ImageButton";
+import { useCharacter } from "../../hooks/useCharacter";
 
 type Props = NativeStackScreenProps<RootStackParamList, "SelectCharacter">;
 
 export default function CharacterList({ navigation }: Props) {
   const [characters, setCharacters] = useState();
   const app = useContext(AppContext);
+  const { resetCharacter } = useCharacter();
 
   const fetchCharacters = async () => {
     try {
@@ -43,7 +45,8 @@ export default function CharacterList({ navigation }: Props) {
   };
 
   const handleAdd = () => {
-    console.log("Click click! Time to make another one");
+    resetCharacter();
+    navigation.navigate("CreateCharacter");
   };
 
   const renderItem = ({ item }: { item: Character }) => (
@@ -72,7 +75,11 @@ export default function CharacterList({ navigation }: Props) {
   return (
     <View>
       <FlatList className="mx-8" data={characters} renderItem={renderItem} />
-      <AddButton onPress={handleAdd} />
+      <ImageButton
+        imageName="add"
+        className="self-center"
+        onPress={handleAdd}
+      />
     </View>
   );
 }

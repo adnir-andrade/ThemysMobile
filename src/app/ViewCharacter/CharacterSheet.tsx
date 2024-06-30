@@ -9,7 +9,7 @@ type Props = {
 
 export default function CharacterSheet({ character }: Props) {
   return (
-    <View className="mt-36">
+    <View className="mt-16">
       <View className="justify-start items-center mb-12">
         <Text className="text-3xl text-white font-semibold">
           {character.gender} {character.race}

@@ -29,7 +29,11 @@ export const getCharacterById = async (id: number) => {
 export const createCharacter = async (characterData: Character) => {
   try {
     const authHeader = await getHeader();
-    const response = await api.post("/characters", characterData, authHeader);
+    const response = await api.post(
+      "/characters",
+      { character: characterData },
+      authHeader
+    );
 
     return response.data;
   } catch (error) {

@@ -1,15 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, ViewProps } from "react-native";
 import React from "react";
 
-type Header = {
+type Props = {
   title: string;
   color?: string;
-};
+} & ViewProps;
 
-export default function Header({ title, color }: Header) {
+export default function Header({ title, color, ...rest }: Props) {
   const textStyle = "text-4xl font-semibold text-center capitalize " + color;
   return (
-    <View className="pt-20 mb-20 absolute top-0 left-0 right-0">
+    <View {...rest}>
       <Text className={textStyle}>{title}</Text>
     </View>
   );
