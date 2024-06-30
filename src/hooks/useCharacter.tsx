@@ -18,6 +18,7 @@ const initialCharacter: Character = {
   wisdom: 8,
   charisma: 8,
   background: "",
+  skills: [],
   points_to_spend: 27,
 };
 
