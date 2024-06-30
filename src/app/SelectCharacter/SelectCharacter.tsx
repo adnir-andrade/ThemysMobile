@@ -12,9 +12,9 @@ type Props = NativeStackScreenProps<RootStackParamList, "SelectCharacter">;
 export default function SelectCharacter({ navigation, route }: Props) {
   return (
     <Background>
-      <View className="flex-1 justify-center">
+      <View className="justify-center">
         {/* <Logo /> */}
-        <Header title="Select a Character" />
+        <Header title="Select a Character" className="mt-20 mb-10" />
         <CharacterList navigation={navigation} route={route} />
       </View>
     </Background>

@@ -21,7 +21,11 @@ export default function ViewCharacter({ navigation, route }: Props) {
     <Background>
       <View className="flex-1">
         <Logo />
-        <Header title={`${character.name}`} color="text-orange-300" />
+        <Header
+          title={`${character.name}`}
+          color="text-orange-300"
+          className="mt-20"
+        />
         <CharacterSheet character={character} />
         <ImageButton
           imageName="config"
