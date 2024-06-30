@@ -6,4 +6,5 @@ export type RootStackParamList = {
   ViewCharacter: { character: Character };
   CreateCharacter: undefined;
   EditCharacter: { character: Character };
+  Profile: undefined;
 };
