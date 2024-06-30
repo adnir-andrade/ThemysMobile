@@ -27,7 +27,9 @@ export default function Step3({ character, updateCharacter }: Props) {
   const [wis, setWis] = useState<number>(character.wisdom);
   const [cha, setCha] = useState<number>(character.charisma);
   const [selectedStat, setSelectedStat] = useState<string>(stats[0]);
-  const [pointsLeft, setPointsLeft] = useState<number>(27);
+  const [pointsLeft, setPointsLeft] = useState<number>(
+    character.points_to_spend
+  );
 
   const setAcronym: setAcronymType = {
     STR: setStr,
@@ -55,8 +57,9 @@ export default function Step3({ character, updateCharacter }: Props) {
       intelligence: int!,
       wisdom: wis!,
       charisma: cha!,
+      points_to_spend: pointsLeft,
     });
-  }, [str, dex, con, int, wis, cha]);
+  }, [str, dex, con, int, wis, cha, pointsLeft]);
 
   const handleDice = () => {
     const standardArray = [8, 10, 12, 13, 14, 15];
