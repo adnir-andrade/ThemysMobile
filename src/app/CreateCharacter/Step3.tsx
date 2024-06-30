@@ -47,6 +47,10 @@ export default function Step3({ character, updateCharacter }: Props) {
     console.log("Should increase");
   };
 
+  const handleSelect = (index: number) => {
+    setSelectedStat(stats[index]);
+  };
+
   return (
     <View>
       <View className="flex flex-row mb-6">
@@ -70,7 +74,11 @@ export default function Step3({ character, updateCharacter }: Props) {
       </View>
       <ScrollView className="p-4">
         {stats.map((stat, index) => (
-          <StatLine key={index} stat={stat} />
+          <StatLine
+            onPress={() => handleSelect(index)}
+            key={index}
+            stat={stat}
+          />
         ))}
       </ScrollView>
       <View className="flex flex-row mb-6 px-12 items-center">
@@ -81,8 +89,10 @@ export default function Step3({ character, updateCharacter }: Props) {
             onPress={handleDecrease}
           />
         </View>
-        <View>
-          <Text className="text-4xl font-medium">{selectedStat}</Text>
+        <View className="flex-1">
+          <Text className="text-4xl font-medium text-center">
+            {selectedStat}
+          </Text>
         </View>
         <View className="flex-1">
           <ImageButton
