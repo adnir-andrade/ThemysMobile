@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getStatsAcronym } from "../../constants/Stats";
 import StatLine from "./StatLine";
 import ImageButton from "../../components/ImageButton";
@@ -10,15 +10,41 @@ type Props = {
   updateCharacter: (updatedFields: Partial<Character>) => void;
 };
 
+type setAcronymType = {
+  [key: string]: Dispatch<SetStateAction<number>>;
+};
+
+type varAcronymType = {
+  [key: string]: number;
+};
+
 export default function Step3({ character, updateCharacter }: Props) {
   const stats = getStatsAcronym();
-  const [str, setStr] = useState(character.strength);
-  const [dex, setDex] = useState(character.dexterity);
-  const [con, setCon] = useState(character.constitution);
-  const [int, setInt] = useState(character.intelligence);
-  const [wis, setWis] = useState(character.wisdom);
-  const [cha, setCha] = useState(character.charisma);
-  const [selectedStat, setSelectedStat] = useState(stats[0]);
+  const [str, setStr] = useState<number>(character.strength);
+  const [dex, setDex] = useState<number>(character.dexterity);
+  const [con, setCon] = useState<number>(character.constitution);
+  const [int, setInt] = useState<number>(character.intelligence);
+  const [wis, setWis] = useState<number>(character.wisdom);
+  const [cha, setCha] = useState<number>(character.charisma);
+  const [selectedStat, setSelectedStat] = useState<string>(stats[0]);
+
+  const setAcronym: setAcronymType = {
+    STR: setStr,
+    DEX: setDex,
+    CON: setCon,
+    INT: setInt,
+    WIS: setWis,
+    CHA: setCha,
+  };
+
+  const varAcronym: varAcronymType = {
+    STR: str,
+    DEX: dex,
+    CON: con,
+    INT: int,
+    WIS: wis,
+    CHA: cha,
+  };
 
   useEffect(() => {
     updateCharacter({
@@ -29,22 +55,22 @@ export default function Step3({ character, updateCharacter }: Props) {
       wisdom: wis!,
       charisma: cha!,
     });
-  }, [setStr, setDex, setCon, setInt, setWis, setCha]);
+  }, [str, dex, con, int, wis, cha]);
 
   const handleDice = () => {
-    console.log("I am so tired");
+    console.log("Rolling dice...");
   };
 
   const handleReset = () => {
-    console.log("I am so tired");
+    console.log("Resetting stats...");
   };
 
   const handleDecrease = () => {
-    console.log("Should decrease");
+    setAcronym[selectedStat](varAcronym[selectedStat] - 1);
   };
 
   const handleIncrease = () => {
-    console.log("Should increase");
+    setAcronym[selectedStat](varAcronym[selectedStat] + 1);
   };
 
   const handleSelect = (index: number) => {
@@ -53,7 +79,7 @@ export default function Step3({ character, updateCharacter }: Props) {
 
   return (
     <View>
-      <View className="flex flex-row mb-6">
+      <View className="flex flex-row items-center mb-6">
         <View className="flex-1">
           <ImageButton
             imageName="dice"
@@ -62,7 +88,7 @@ export default function Step3({ character, updateCharacter }: Props) {
           />
         </View>
         <View className="flex-1">
-          <Text className="text-center">0</Text>
+          <Text className="text-center text-4xl">0</Text>
         </View>
         <View className="flex-1">
           <ImageButton
@@ -78,6 +104,7 @@ export default function Step3({ character, updateCharacter }: Props) {
             onPress={() => handleSelect(index)}
             key={index}
             stat={stat}
+            total={varAcronym[stat]}
           />
         ))}
       </ScrollView>
