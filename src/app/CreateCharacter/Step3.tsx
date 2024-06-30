@@ -58,11 +58,11 @@ export default function Step3({ character, updateCharacter }: Props) {
   }, [str, dex, con, int, wis, cha]);
 
   const handleDice = () => {
-    stats.forEach((stat) => setAcronym[stat](10));
+    // 8, 10, 12, 13, 14, and 15
   };
 
   const handleReset = () => {
-    console.log("Resetting stats...");
+    stats.forEach((stat) => setAcronym[stat](10));
   };
 
   const handleDecrease = () => {
