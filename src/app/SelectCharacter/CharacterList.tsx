@@ -1,7 +1,10 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Modal, Button, Pressable } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Character } from "../../types/Character";
-import { getCharactersByPlayer } from "../../services/characterService";
+import {
+  deleteCharacter,
+  getCharactersByPlayer,
+} from "../../services/characterService";
 import AppContext from "../../contexts/AppContext";
 import EditButton from "../../components/EditButton";
 import DeleteButton from "../../components/DeleteButton";
@@ -16,6 +19,8 @@ type Props = NativeStackScreenProps<RootStackParamList, "SelectCharacter">;
 
 export default function CharacterList({ navigation }: Props) {
   const [characters, setCharacters] = useState();
+  const [activeCharacter, setActiveCharacter] = useState<number | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const app = useContext(AppContext);
   const { resetCharacter } = useCharacter();
 
@@ -41,7 +46,8 @@ export default function CharacterList({ navigation }: Props) {
   };
 
   const handleDelete = (id: number) => {
-    console.log("Click click! Time to delete");
+    setActiveCharacter(id);
+    setShowDeleteModal(!showDeleteModal);
   };
 
   const handleAdd = () => {
@@ -84,6 +90,50 @@ export default function CharacterList({ navigation }: Props) {
         className="self-center"
         onPress={handleAdd}
       />
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showDeleteModal}
+        onRequestClose={() => {
+          setShowDeleteModal(!showDeleteModal);
+        }}
+      >
+        <View className="flex-1 justify-center items-center bg-gray-900/60 p-4">
+          <View className="bg-stone-700/80 p-8 rounded-xl shadow-lg w-80">
+            <Text className="text-2xl italic font-semibold text-white mb-8 text-center">
+              I don't think there will be a return journey, Mr. Frodo!
+            </Text>
+            <Text className="text-lg font-semibold text-white mb-4 text-center">
+              <Text>You are about to delete your character, </Text>
+              <Text className="text-red-500">you can't undo this action.</Text>
+            </Text>
+            <Text className="text-lg font-bold text-white mb-4 text-center">
+              Are you sure about this?
+            </Text>
+            <Pressable
+              className="bg-blue-500 p-2 rounded self-center w-full"
+              onPress={() => setShowDeleteModal(!showDeleteModal)}
+            >
+              <Text className="text-white text-lg text-center font-bold">
+                Cancel
+              </Text>
+            </Pressable>
+            <Pressable
+              className="bg-red-500 p-2 text-lg rounded self-center w-full mt-20"
+              onPress={async () => {
+                await deleteCharacter(activeCharacter!);
+                setShowDeleteModal(!showDeleteModal);
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: "SelectCharacter" }],
+                });
+              }}
+            >
+              <Text className="text-white text-center font-black">DELETE</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
