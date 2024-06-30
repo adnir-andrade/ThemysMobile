@@ -74,7 +74,11 @@ export default function CharacterList({ navigation }: Props) {
 
   return (
     <View>
-      <FlatList className="mx-8" data={characters} renderItem={renderItem} />
+      <FlatList
+        className="mx-8 h-4/6"
+        data={characters}
+        renderItem={renderItem}
+      />
       <ImageButton
         imageName="add"
         className="self-center"
