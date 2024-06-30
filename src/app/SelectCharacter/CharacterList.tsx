@@ -10,12 +10,14 @@ import CardFramed from "../../components/containers/CardFramed";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
 import ImageButton from "../../components/ImageButton";
+import { useCharacter } from "../../hooks/useCharacter";
 
 type Props = NativeStackScreenProps<RootStackParamList, "SelectCharacter">;
 
 export default function CharacterList({ navigation }: Props) {
   const [characters, setCharacters] = useState();
   const app = useContext(AppContext);
+  const { resetCharacter } = useCharacter();
 
   const fetchCharacters = async () => {
     try {
@@ -43,6 +45,7 @@ export default function CharacterList({ navigation }: Props) {
   };
 
   const handleAdd = () => {
+    resetCharacter();
     navigation.navigate("CreateCharacter");
   };
 
