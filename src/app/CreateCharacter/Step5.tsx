@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import { Character } from "../../types/Character";
 import Stat from "../ViewCharacter/Stat";
+import Header from "../../components/Header";
 
 type Props = {
   character: Character;
@@ -21,11 +22,12 @@ const skillToString = (skills: string[]) => {
 export default function Step5({ character, updateCharacter }: Props) {
   return (
     <>
-      <Text className="text-xl mb-2 font-medium text-yellow-300 pt-2 px-2">
+      <Text className="text-xl font-medium text-yellow-300 pt-2 px-2">
         Summary
       </Text>
       <View className="mt-4 items-center">
-        <View className="justify-start items-center mb-12">
+        <Header title={character.name} color="text-epic" className="mb-4" />
+        <View className="justify-start items-center mb-3">
           <Text className="text-3xl text-white font-semibold">
             {character.gender} {character.race}
           </Text>
