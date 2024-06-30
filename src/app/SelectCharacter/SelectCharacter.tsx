@@ -14,7 +14,7 @@ export default function SelectCharacter({ navigation, route }: Props) {
     <Background>
       <View className="justify-center">
         {/* <Logo /> */}
-        <Header title="Select a Character" className="mt-20 mb-10" />
+        <Header title="Characters" color="text-epic" className="mt-20 mb-10" />
         <CharacterList navigation={navigation} route={route} />
       </View>
     </Background>
