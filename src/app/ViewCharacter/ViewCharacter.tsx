@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
 import CharacterSheet from "./CharacterSheet";
+import Navbar from "../../components/ui/Navbar";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ViewCharacter">;
 
@@ -14,11 +15,12 @@ export default function ViewCharacter({ navigation, route }: Props) {
 
   return (
     <Background>
+      <Navbar />
       <View className="flex-1">
         <Logo />
         <Header
           title={`${character.name}`}
-          color="text-orange-300"
+          color="text-orange-300 "
           className="mt-20"
         />
         <CharacterSheet character={character} />

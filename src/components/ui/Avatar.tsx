@@ -10,7 +10,7 @@ export default function Avatar({ ...rest }: Props) {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const handleAvatar = () => {
-    // navigation.navigate("Profile");
+    navigation.navigate("Profile");
   };
 
   return (
@@ -18,7 +18,7 @@ export default function Avatar({ ...rest }: Props) {
       <Image
         source={require("../../../assets/images/profile/profile1.jpg")}
         resizeMode="cover"
-        className="rounded-full h-14 w-14 self-end mx-4 mt-4"
+        className="rounded-full h-14 w-14 self-end mx-3 mt-1 z-20 "
       ></Image>
     </Pressable>
   );
