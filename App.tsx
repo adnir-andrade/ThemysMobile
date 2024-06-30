@@ -8,6 +8,7 @@ import { User } from "./src/types/User";
 import ViewCharacter from "./src/app/ViewCharacter/ViewCharacter";
 import { RootStackParamList } from "./src/types/Navigation";
 import CreateCharacter from "./src/app/CreateCharacter/CreateCharacter";
+import EditCharacter from "./src/app/EditCharacter/EditCharacter";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -27,6 +28,7 @@ export default function App() {
           <Stack.Screen name="SelectCharacter" component={SelectCharacter} />
           <Stack.Screen name="ViewCharacter" component={ViewCharacter} />
           <Stack.Screen name="CreateCharacter" component={CreateCharacter} />
+          <Stack.Screen name="EditCharacter" component={EditCharacter} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppContext.Provider>
