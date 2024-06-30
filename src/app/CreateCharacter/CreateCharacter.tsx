@@ -13,6 +13,7 @@ import Step5 from "./Step5";
 import { useCharacter } from "../../hooks/useCharacter";
 import HeaderInput from "../../components/HeaderInput";
 import ImageButton from "../../components/ImageButton";
+import { createCharacter } from "../../services/characterService";
 
 type Props = {} & NativeStackScreenProps<RootStackParamList, "CreateCharacter">;
 
@@ -76,6 +77,21 @@ export default function CreateCharacter({ navigation }: Props) {
 
   const handleAdd = () => {
     console.log("Click!");
+    const submitCharacter = async () => {
+      try {
+        const response = await createCharacter(character);
+        console.log(response);
+      } catch (error) {
+        console.error("Error trying to create a new character:", error);
+      } finally {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "SelectCharacter" }],
+        });
+      }
+    };
+
+    // submitCharacter();
   };
 
   return (
