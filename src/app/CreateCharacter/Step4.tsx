@@ -74,10 +74,10 @@ export default function Step4({ character, updateCharacter }: Props) {
 
   return (
     <View>
-      <Text className="text-xl mb-2 font-medium text-yellow-300 pt-8 px-2">
         Skills
       </Text>
 
+      <Text className="text-xl mb-2 font-medium text-yellow-300 pt-8 px-2">
       <FlatList
         className="mx-4 mb-32"
         data={skillsState}
