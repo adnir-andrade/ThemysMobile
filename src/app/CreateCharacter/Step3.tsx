@@ -67,6 +67,7 @@ export default function Step3({ character, updateCharacter }: Props) {
       const index = getRandomIndex(standardArray);
       setAcronym[stat](standardArray.splice(index, 1)[0]);
     }
+    setPointsLeft(0);
   };
 
   const handleReset = () => {
