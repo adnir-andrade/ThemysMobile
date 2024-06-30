@@ -76,7 +76,6 @@ export default function CreateCharacter({ navigation }: Props) {
   };
 
   const handleAdd = () => {
-    console.log("Click!");
     const submitCharacter = async () => {
       try {
         const response = await createCharacter(character);
@@ -91,7 +90,7 @@ export default function CreateCharacter({ navigation }: Props) {
       }
     };
 
-    // submitCharacter();
+    submitCharacter();
   };
 
   return (
