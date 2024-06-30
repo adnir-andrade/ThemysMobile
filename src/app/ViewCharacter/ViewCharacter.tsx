@@ -6,16 +6,11 @@ import Header from "../../components/Header";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
 import CharacterSheet from "./CharacterSheet";
-import ImageButton from "../../components/ImageButton";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ViewCharacter">;
 
 export default function ViewCharacter({ navigation, route }: Props) {
   const { character } = route.params;
-
-  const handleConfig = () => {
-    console.log("Click Click I am goddamn hungry!");
-  };
 
   return (
     <Background>
