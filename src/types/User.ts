@@ -4,4 +4,5 @@ export type User = {
   username: string;
   email: string;
   role: string;
+  profile_url: string;
 };
