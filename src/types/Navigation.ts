@@ -7,4 +7,5 @@ export type RootStackParamList = {
   CreateCharacter: undefined;
   EditCharacter: { character: Character };
   Profile: undefined;
+  SelectCampaign: undefined;
 };
