@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         epic: "#CFBE86",
+        epicmono: "#C1AA61",
       },
     },
   },
