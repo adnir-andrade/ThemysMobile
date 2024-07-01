@@ -9,9 +9,10 @@ import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import CustomInput from "../../components/CustomInput";
 import { logout } from "../../services/authService";
-import { StackActions, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
+import { editUser } from "../../services/userService";
 
 export default function Profile() {
   const app = useContext(AppContext);
@@ -20,6 +21,7 @@ export default function Profile() {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const loggedUser = app?.user;
+  const profileUri = app?.user.profile_url;
 
   const handleAvatar = () => {
     navigation.navigate("Profile");
@@ -37,6 +39,7 @@ export default function Profile() {
       setImage(result.assets[0].uri);
       loggedUser!.profile_url = result.assets[0].uri;
       app?.setUser(loggedUser!);
+      editUser({ profile_url: image }, app?.user.id!);
 
       navigation.replace("Profile");
     }
@@ -70,9 +73,9 @@ export default function Profile() {
         />
         <Image
           source={
-            image
-              ? { uri: image }
-              : require("../../../assets/images/profile/profile1.jpg")
+            profileUri && profileUri !== ""
+              ? { uri: profileUri }
+              : require("../../../assets/images/profile/anon.jpg")
           }
           resizeMode="cover"
           className="rounded-full h-64 w-64 self-center border border-double border-4 border-epic"

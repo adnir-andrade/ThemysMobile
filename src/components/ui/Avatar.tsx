@@ -15,14 +15,16 @@ export default function Avatar({ ...rest }: Props) {
   };
 
   const app = useContext(AppContext);
+  const profileUri = app?.user.profile_url;
+
   return (
     <Pressable onPress={handleAvatar} {...rest}>
       <Image
-        source={{
-          uri:
-            app?.user.profile_url! ??
-            require("../../../assets/images/profile/anon.jpg"),
-        }}
+        source={
+          profileUri && profileUri !== ""
+            ? { uri: profileUri }
+            : require("../../../assets/images/profile/anon.jpg")
+        }
         resizeMode="cover"
         className="rounded-full h-14 w-14 self-end mx-3 mt-1 z-20 "
       ></Image>
