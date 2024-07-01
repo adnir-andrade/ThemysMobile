@@ -39,7 +39,7 @@ export default function Profile() {
       setImage(result.assets[0].uri);
       loggedUser!.profile_url = result.assets[0].uri;
       app?.setUser(loggedUser!);
-      editUser({ profile_url: image }, app?.user.id!);
+      editUser({ profile_url: result.assets[0].uri }, app?.user.id!);
 
       navigation.replace("Profile");
     }

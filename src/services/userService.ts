@@ -38,10 +38,14 @@ export const createUser = async (userData: User) => {
   }
 };
 
-export const editUser = async (userData: User, id: number) => {
+export const editUser = async (userData: Partial<User>, id: number) => {
   try {
     const authHeader = await getHeader();
-    const response = await api.put(`/users/${id}`, userData, authHeader);
+    const response = await api.put(
+      `/users/${id}`,
+      { user: userData },
+      authHeader
+    );
 
     return response.data;
   } catch (error) {
