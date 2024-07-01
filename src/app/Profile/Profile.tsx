@@ -7,18 +7,20 @@ import Header from "../../components/Header";
 import AppContext from "../../contexts/AppContext";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import FormInput from "../../components/FormInput";
 import CustomInput from "../../components/CustomInput";
 import { logout } from "../../services/authService";
-import { useNavigation } from "@react-navigation/native";
+import { StackActions, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
 
 export default function Profile() {
   const app = useContext(AppContext);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string>(app?.user.profile_url! ?? "");
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const loggedUser = app?.user;
+
   const handleAvatar = () => {
     navigation.navigate("Profile");
   };
@@ -33,6 +35,10 @@ export default function Profile() {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+      loggedUser!.profile_url = result.assets[0].uri;
+      app?.setUser(loggedUser!);
+
+      navigation.replace("Profile");
     }
   };
 
