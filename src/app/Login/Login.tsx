@@ -20,7 +20,10 @@ export default function Login({ navigation }: Props) {
     try {
       const response = await login(email, password);
       app?.setUser(response.user);
-      navigation.navigate("SelectCharacter");
+      console.log(response.user.role);
+      if (response.user.role === "dm") navigation.navigate("SelectCampaign");
+      if (response.user.role === "player")
+        navigation.navigate("SelectCharacter");
     } catch (error: any) {
       console.log(error);
     }
