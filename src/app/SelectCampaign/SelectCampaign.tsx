@@ -3,7 +3,6 @@ import React from "react";
 import Background from "../../components/ui/Background";
 import Logo from "../../components/ui/Logo";
 import Header from "../../components/Header";
-import CharacterList from "./CampaignList";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/Navigation";
 import Navbar from "../../components/ui/Navbar";
@@ -17,7 +16,7 @@ export default function SelectCampaign({ navigation, route }: Props) {
       <Navbar />
       <View className="justify-center">
         {/* <Logo /> */}
-        <Header title="Characters" color="text-epic" className="mt-20 mb-10" />
+        <Header title="Campaigns" color="text-epic" className="mt-20 mb-10" />
         <CampaignList navigation={navigation} route={route} />
       </View>
     </Background>
