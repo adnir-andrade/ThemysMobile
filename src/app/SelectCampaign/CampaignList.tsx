@@ -36,8 +36,8 @@ export default function CampaignList({ navigation }: Props) {
     fetchCampaigns();
   }, []);
 
-  const handleView = () => {
-    // navigation.navigate("ViewCharacter", { character: campaign });
+  const handleView = (id: number) => {
+    navigation.navigate("ViewCampaign", { campaign_id: id });
   };
 
   const handleEdit = (id: number) => {
@@ -71,7 +71,7 @@ export default function CampaignList({ navigation }: Props) {
 
   const handleSave = async () => {
     const nextDayDate = new Date(selectedDate);
-    nextDayDate.setDate(nextDayDate.getDate() + 1); // Adiciona 1 dia
+    nextDayDate.setDate(nextDayDate.getDate());
 
     const formattedDate = nextDayDate
       .toISOString()
@@ -92,7 +92,7 @@ export default function CampaignList({ navigation }: Props) {
       <TouchableTitle
         title={`${item.name}`}
         className="px-1"
-        onPress={() => handleView()}
+        onPress={() => handleView(item.id)}
       />
       <CardFramed>
         <View className="flex justify-between mb-4">
