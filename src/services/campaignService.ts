@@ -83,3 +83,17 @@ export const getCampaignsByDm = async (id: number) => {
     throw error;
   }
 };
+
+export const getPlayersByCampaign = async (id: number) => {
+  try {
+    const authHeader = await getHeader();
+    const response = await api.get(
+      `/campaigns_players/players_by_campaign/${id}`,
+      authHeader
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching players:", error);
+    throw error;
+  }
+};
