@@ -11,6 +11,7 @@ import CreateCharacter from "./src/app/CreateCharacter/CreateCharacter";
 import EditCharacter from "./src/app/EditCharacter/EditCharacter";
 import Profile from "./src/app/Profile/Profile";
 import SelectCampaign from "./src/app/SelectCampaign/SelectCampaign";
+import ViewCampaign from "./src/app/ViewCampaign/ViewCampaign";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -34,6 +35,7 @@ export default function App() {
           <Stack.Screen name="EditCharacter" component={EditCharacter} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="SelectCampaign" component={SelectCampaign} />
+          <Stack.Screen name="ViewCampaign" component={ViewCampaign} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppContext.Provider>

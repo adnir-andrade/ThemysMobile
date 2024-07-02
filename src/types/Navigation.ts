@@ -1,3 +1,4 @@
+import { Campaign } from "./Campaign";
 import { Character } from "./Character";
 
 export type RootStackParamList = {
@@ -8,4 +9,5 @@ export type RootStackParamList = {
   EditCharacter: { character: Character };
   Profile: undefined;
   SelectCampaign: undefined;
+  ViewCampaign: { campaign_id: number };
 };
